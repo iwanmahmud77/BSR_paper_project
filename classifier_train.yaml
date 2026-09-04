@@ -1,0 +1,52 @@
+# Exact configuration used for the direct image-classification experiments.
+# Extracted from BSR_YOLO_ML_pipeline_v11.ipynb, cells 45-58 (DIRECT IMAGE
+# CLASSIFICATION section).
+
+seed: 42   # see set_seed() in cell 1; applied once at notebook start
+
+data:
+  dataset_root: null            # SET THIS — no default
+  labels_csv: "severity_pseudolabels_all_splits.csv"   # output of 01_generate_severity_labels.py
+  label_column: "severity_class_rule"
+  split_column: "source"        # values: train / valid / test
+  class_order: ["Healthy", "Mild", "Moderate", "Severe"]
+
+image:
+  size: 224
+  normalize_mean: [0.485, 0.456, 0.406]   # ImageNet stats
+  normalize_std: [0.229, 0.224, 0.225]
+
+train_augmentation:
+  random_horizontal_flip_p: 0.5
+  random_rotation_degrees: 10
+  color_jitter:
+    brightness: 0.15
+    contrast: 0.15
+    saturation: 0.15
+
+training:
+  batch_size: 32
+  num_epochs: 50
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-4
+  patience: 10          # early stopping on validation loss, min_delta 1e-4
+  optimizer: AdamW
+  loss: CrossEntropyLoss
+  # Best-val-accuracy checkpoint is restored at the end of training;
+  # early stopping is tracked separately on validation loss.
+
+models:
+  - name: EfficientNet-B0
+    backbone: torchvision.models.efficientnet_b0
+    weights: EfficientNet_B0_Weights.DEFAULT
+  - name: MobileNetV2
+    backbone: torchvision.models.mobilenet_v2
+    weights: MobileNet_V2_Weights.DEFAULT
+  - name: Swin-Tiny
+    backbone: torchvision.models.swin_t
+    weights: Swin_T_Weights.DEFAULT
+  - name: ConvNeXt-V2-Tiny
+    backbone: timm.create_model
+    timm_tag: convnextv2_tiny.fcmae_ft_in22k_in1k
+    fallback: torchvision.models.convnext_tiny (ConvNeXt_Tiny_Weights.DEFAULT)
+    fallback_condition: "used automatically if timm is not installed / model pull fails"

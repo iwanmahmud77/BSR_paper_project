@@ -1,0 +1,48 @@
+# Exact configuration used for detector training.
+# Extracted from BSR_YOLO_train_v5_multi.ipynb, cells 4/6/8.
+
+data:
+  dataset_root: null            # SET THIS — no default; must not be a personal path in code
+  data_yaml: "${dataset_root}/data.yaml"
+  # data_fixed.yaml is generated at run time with absolute train/val/test
+  # image paths re-rooted under dataset_root (see 02_train_yolo_detectors.py)
+
+training:
+  epochs: 500
+  imgsz: 960
+  batch: 16
+  patience: 60
+  device: 0
+  workers: 0
+  cos_lr: true
+
+seeds:
+  # Each architecture is trained once per seed; report mean +/- std across seeds.
+  values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+augmentation:
+  mosaic: 1.0
+  mixup: 0.15
+  copy_paste: 0.1
+  hsv_h: 0.015
+  hsv_s: 0.7
+  hsv_v: 0.4
+  degrees: 10
+  translate: 0.1
+  scale: 0.5
+  shear: 2.0
+  perspective: 0.0
+  fliplr: 0.5
+  flipud: 0.0   # kept at 0: upside-down palm images are not physically realistic
+  close_mosaic: 10
+
+models:
+  YOLOv8n:
+    weights_file: yolov8n.pt
+    run_base_name: compare_yolov8n_v2
+  YOLOv11n:
+    weights_file: yolo11n.pt
+    run_base_name: compare_yolo11n_v2
+  YOLO26n:
+    weights_file: yolo26n.pt
+    run_base_name: compare_yolo26n_v2

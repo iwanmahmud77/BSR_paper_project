@@ -1,0 +1,29 @@
+# Severity pseudo-label generation from YOLO box annotations.
+# Extracted from BSR_YOLO_ML_pipeline_v11.ipynb, cell 3.
+
+data:
+  dataset_root: null            # SET THIS — no default
+  data_yaml: "${dataset_root}/data.yaml"
+  splits_to_process: ["train", "valid", "test"]
+  image_extensions: [".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff"]
+
+# data.yaml `names` -> feature mapping. Must match scripts/01_generate_severity_labels.py
+class_name_mapping:
+  fruiting_body_class_names: ["mushroom", "white-button"]
+  rot_class_name: "rot"
+
+feature_weights:
+  # severity_score = alpha*rot_area_ratio + beta*fruiting_body_count + gamma*rot_instance_count
+  # (each term min-max normalized dataset-wide before weighting; see compute_severity_score)
+  alpha_rot_area: 0.5
+  beta_fruiting_body: 0.3
+  gamma_rot_instances: 0.2
+
+rule_thresholds:
+  # Mirrors MPOB stem-rot percentage bands.
+  moderate_min_rot_area_ratio: 0.10
+  severe_min_rot_area_ratio: 0.30
+  severe_fruiting_body_count: 3     # multifocal fruiting bodies -> Severe regardless of area
+
+output:
+  csv_path: "severity_pseudolabels_all_splits.csv"
