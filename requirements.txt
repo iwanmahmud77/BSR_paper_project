@@ -1,0 +1,24 @@
+# Pin exact versions after your final training run, e.g. via:
+#   pip freeze > requirements-lock.txt
+# and commit BOTH files: this one (readable, loose) and the lock file (exact).
+
+numpy
+pandas
+matplotlib
+pyyaml
+scikit-learn
+shap
+
+# Detection (YOLO)
+ultralytics
+
+# Classification backbones
+torch
+torchvision
+timm            # required for ConvNeXt-V2-Tiny (convnextv2_tiny.fcmae_ft_in22k_in1k)
+
+# Excel export used in the YOLO comparison table (comparison_df.to_excel)
+openpyxl
+
+# Image I/O
+pillow
