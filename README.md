@@ -1,6 +1,8 @@
-Title:Proximal Remote Sensing of Oil Palm Basal Stem Rot using Deep Learning Vision Algorithms and Ground-Based Images
+Title: Proximal Remote Sensing of Oil Palm Basal Stem Rot using Deep Learning Vision Algorithms and Ground-Based Images
+
 ## Citation
 Wan, S. H., Chung, J., Yong, E., Chan, J. Y., Anuar, M. I., & Solihin, M. I. (2026). Proximal Remote Sensing of Oil Palm Basal Stem Rot Using Deep Learning Vision Algorithms and Ground-based Images. International Journal of Intelligent Engineering and Systems, 19(11). https://doi.org/10.22266/ijies2026.1130.31
+
 
 
 This repository contains the full non-image pipeline used to produce the
