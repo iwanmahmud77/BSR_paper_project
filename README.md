@@ -111,5 +111,5 @@ not guaranteed; results should match within the reported ± std across seeds.
 
 
 ## License
-
-[We will add manuscript license.]
+This article is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.  
+License details: https://creativecommons.org/licenses/by-sa/4.0/ 
