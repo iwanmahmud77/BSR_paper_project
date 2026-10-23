@@ -1,4 +1,3 @@
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2b3cd3d5-5376-476d-b2d7-442a704fb887" /># [BSR palm oil project, IJIES journal] — Basal Stem Rot (BSR) severity detection & classification
 Title:Proximal Remote Sensing of Oil Palm Basal Stem Rot using Deep Learning Vision Algorithms and Ground-Based Images
 ## Citation
 Wan, S. H., Chung, J., Yong, E., Chan, J. Y., Anuar, M. I., & Solihin, M. I. (2026). Proximal Remote Sensing of Oil Palm Basal Stem Rot Using Deep Learning Vision Algorithms and Ground-based Images. International Journal of Intelligent Engineering and Systems, 19(11). https://doi.org/10.22266/ijies2026.1130.31
